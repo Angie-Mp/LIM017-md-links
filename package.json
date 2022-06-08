@@ -3,5 +3,41 @@
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
+  },
+  "description": "## Índice",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Angie-Mp/LIM017-md-links.git"
+  },
+  "author": "Angie Mariscal Pomacaja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Angie-Mp/LIM017-md-links/issues"
+  },
+  "homepage": "https://github.com/Angie-Mp/LIM017-md-links#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "chalk": "^5.0.1",
+    "cli": "^1.0.1",
+    "jest": "^28.1.1",
+    "main": "^1000.0.1",
+    "marked": "^4.0.16",
+    "md-links": "^0.1.0",
+    "node": "^17.7.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^6.0.0",
+    "import-path": "^1.0.15"
+  },
+  "bin": {
+    "md-links": "src/cli.js"
   }
 }
