@@ -54,13 +54,15 @@ describe('Muestra los links md', () => {
   })
 } );
 
-/////
+////////////////////////////////////////
+
 describe('Totalidad de links', () => {
   it('muestra la cantidad total de links',() => {
       const links = [
         "https://www.instagram.com/p/asd1/",
         "https://www.instagram.com/p/asd2/",
-       
+        "https://www.instagram.com/laboratoriala/",
+        "https://www.instagram.com/bts.bighitofficial/"
         ]
       expect(totalLinks(links))
   })
@@ -71,7 +73,8 @@ describe('Links unicos', () => {
       const links = [
         "https://www.instagram.com/p/asd1/",
         "https://www.instagram.com/p/asd2/",
-       
+        "https://www.instagram.com/laboratoriala/",
+        "https://www.instagram.com/bts.bighitofficial/"
         ]
       expect(uniqueLinks(links))
   })
@@ -82,9 +85,7 @@ describe('Links rotos', () => {
       const links = [
         "https://www.instagram.com/p/as",
         "https://www.instagram.com/p/as",
-       
         ]
       expect(brokenLinks(links))
   })
 } );
-

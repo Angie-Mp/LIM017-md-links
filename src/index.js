@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const {
   absoluteRoute,
   existingRoute,
@@ -5,7 +6,7 @@ const {
   readLinksMd,
   validateWithAxios,
 } = require( './mdLinks.js');
-const chalk = require('chalk');
+
 //funcion mdlinks
 const mdlinks = (ruta, option) => {
 return new Promise( (resolve, reject) => {
