@@ -1,19 +1,18 @@
 #!/usr/bin/env node
-import mdlinks from './index.js';
-import chalk from 'chalk';
-
-import {
+const mdlinks = require('./index.js');
+const chalk = require('chalk');
+const {
   uniqueLinks,
   brokenLinks,
   totalLinks
-} from './mdLinks.js'
+} = require('./mdLinks.js')
 const argument = process.argv.slice(2) 
 
     if (argument.length === 1) { 
       mdlinks(argument[0], { validate: false })
       .then(resolve => {
         resolve.map((objeto) => {
-        console.log(` ${chalk.yellow(objeto.href)} | ${chalk.cyan(objeto.text)} | ${chalk.green(objeto.ruta)}`); // concatena y me regresa un string
+        console.log(` ${chalk.yellow(objeto.href)} | ${chalk.cyan(objeto.text)} | ${chalk.green(objeto.ruta)}`); 
         })
       })
       .catch(reject => console.log(reject));
@@ -40,10 +39,12 @@ const argument = process.argv.slice(2)
         break;
     
       case '--help':
-        console.log(`Intente  después de la ruta: --stats, --validate `);
+        console.log(`${chalk.red('\nIntente  después de la ruta: --stats, --validate\n')}`)
+        //(`Intente  después de la ruta: --stats, --validate `);
         break;
   
-      default: console.log('Comando no válido. Si necesita ayuda ingrese --help');
+      default: console.log(`${chalk.red('\nComando no válido. Si necesita ayuda ingrese --help\n')}`) 
+      //('Comando no válido. Si necesita ayuda ingrese --help');
         break;
       }
     }
@@ -56,7 +57,8 @@ const argument = process.argv.slice(2)
           )
           .catch(reject => console.log(reject));
       } else {
-        console.log('Comando no válido. Necesita ayuda ingrese --help.');
+        console.log(`${chalk.red('\nComando no válido. Si necesita ayuda ingrese --help\n')}`)
+        //('Comando no válido. Necesita ayuda ingrese --help.');
       }
     }
   

@@ -1,12 +1,11 @@
-import {
+const {
   absoluteRoute,
   existingRoute,
   findMdFiles,
   readLinksMd,
   validateWithAxios,
-
-} from './mdLinks.js';
-import chalk from 'chalk'
+} = require( './mdLinks.js');
+const chalk = require('chalk');
 //funcion mdlinks
 const mdlinks = (ruta, option) => {
 return new Promise( (resolve, reject) => {
@@ -39,6 +38,5 @@ return new Promise( (resolve, reject) => {
   }
 });
 };
-export default mdlinks;
-//////////////////////////
+module.exports = mdlinks;
 

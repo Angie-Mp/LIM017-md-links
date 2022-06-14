@@ -1,32 +1,28 @@
-import path from 'path';
-import fs from 'fs';
-import  { marked }  from 'marked';
-import axios from 'axios';
+const path = require('path');
+const fs = require('fs');
+const {marked} = require('marked');
+const axios = require('axios');
 
 // Ruta relativa a absoluta (ruta absoluta)
-export const absoluteRoute = (ruta) => path.isAbsolute(ruta) ? ruta : path.resolve(ruta);
+const absoluteRoute = (ruta) => path.isAbsolute(ruta) ? ruta : path.resolve(ruta);
 
 // Si la ruta existe es TRUE y si no FALSE (rutaExiste)
-export const existingRoute = (ruta) => fs.existsSync(ruta);
-
-// Si la ruta es un archivo es TRUE y si no FALSE (esArchivo)
-//export const fileRoute = (ruta) => fs.lstatSync(ruta).isFile();
-//console.log('La ruta es un archivo: ---> ', fileRoute(rutaAbsolutaEjemplo));
+const existingRoute = (ruta) => fs.existsSync(ruta);
 
 // Si es un directorio TRUE y si FALSE (esDirectorio)
-export const directoryRoute = (ruta) => fs.lstatSync(ruta).isDirectory();
+const directoryRoute = (ruta) => fs.lstatSync(ruta).isDirectory();
 
 // Si es un archivo MD (esArchivoMd)
-export const fileMd = (ruta) => path.extname(ruta) === '.md';
+const fileMd = (ruta) => path.extname(ruta) === '.md';
 
 // Muestra lo que hay dentro de la carpeta (leeDirectorio)
-export const readDirectory= (ruta) => fs.readdirSync(ruta);
+const readDirectory= (ruta) => fs.readdirSync(ruta);
 
 // Muestra el contenido de un archivo (leeArchivo)
-export const readFile = (ruta) => fs.readFileSync(ruta, 'utf-8');
+const readFile = (ruta) => fs.readFileSync(ruta, 'utf-8');
 
 // Muestra todos los archivos md que hay dentro de la ruta
-export const findMdFiles= (ruta) => {
+const findMdFiles= (ruta) => {
   let arrayFiles = [];
     if(directoryRoute(ruta)) {
     const fileDirectory = readDirectory(ruta);
@@ -43,7 +39,7 @@ export const findMdFiles= (ruta) => {
 };
 
 //Lee los links que hay dentro de md (lee nelaces md)
-export const readLinksMd= (archivo) => {
+const readLinksMd= (archivo) => {
   const newMdFileArrays = [];
   const fileMd = findMdFiles(archivo);
   fileMd.forEach((ruta) => {
@@ -64,7 +60,7 @@ export const readLinksMd= (archivo) => {
 };
 
 //Validar enlaces del archivo md (validar con axios)
-export const validateWithAxios = (objeto) => {
+const validateWithAxios = (objeto) => {
   return axios(objeto.href)
       .then((data) => {
         if (data.status >= 200 && data.status < 400) {
@@ -86,43 +82,33 @@ export const validateWithAxios = (objeto) => {
 
 // se importa a cli
 // Enlaces total (totalEnlaces)
-export const totalLinks = (objeto) => {
+const totalLinks = (objeto) => {
   const total = objeto.map(link => link.href); // array de enlaces
   const totalLinks = `\nTotal: ${total.length}`;
   return totalLinks;
 };
 
 //Muestra los links unicos que ahi (enlacesUnicos)
-export const uniqueLinks = (objeto) => {
+const uniqueLinks = (objeto) => {
   const unique = new Set(objeto.map(element => element.href)); // array
   const uniqueLinks = `\nUnique: ${unique.size}\n`;
   return uniqueLinks;
 };
 
 // Enlaces rotos
-export const brokenLinks = (objeto) => { 
+const brokenLinks = (objeto) => { 
   const broken = objeto.filter((element) => element.status >= 400) // array de objetos, nuevo array
   const brokenLinks =`\nBroken: ${broken.length}\n`;
   return brokenLinks;
 };
-
-/*export default {
+module.exports = {
   absoluteRoute,
   existingRoute,
-  //fileRoute,
-  directoryRoute,
-  fileMd,
-  readDirectory,
-  readFile,
-
+  findMdFiles,
   readLinksMd,
   validateWithAxios,
 
+  uniqueLinks,
   brokenLinks,
-  totalLinks,
-  findMdFiles,
-
-
-}*/
-
-
+  totalLinks
+}
