@@ -3,16 +3,14 @@ const {
   existingRoute,
   findMdFiles,
   readLinksMd,
-
-  validateWithAxios,
   totalLinks,
   uniqueLinks,
   brokenLinks
 } = require ('../src/mdLinks.js');
+
 const rutaDirectorioEjemplo = '/Users/mac/Documents/LIM017-md-links/documentProof/'
 const rutaFalsa = '/Users/mac/Documents/LIM017-md-lin/';
 const rutaDirectorioFailMd = '/Users/mac/Documents/LIM017-md-links/documentProof/linksFail.md'
-
 
 describe('Ruta relativa a absoluta', () => {
   it('convierte la ruta a absoluta',() => {
@@ -53,6 +51,40 @@ describe('Muestra los links md', () => {
         },  
       ]
       expect(readLinksMd(rutaDirectorioFailMd)).toEqual(linksMd)
+  })
+} );
+
+/////
+describe('Totalidad de links', () => {
+  it('muestra la cantidad total de links',() => {
+      const links = [
+        "https://www.instagram.com/p/asd1/",
+        "https://www.instagram.com/p/asd2/",
+       
+        ]
+      expect(totalLinks(links))
+  })
+} );
+
+describe('Links unicos', () => {
+  it('muestra la cantidad de links unicos',() => {
+      const links = [
+        "https://www.instagram.com/p/asd1/",
+        "https://www.instagram.com/p/asd2/",
+       
+        ]
+      expect(uniqueLinks(links))
+  })
+} );
+
+describe('Links rotos', () => {
+  it('muestra la cantidad de links rotos',() => {
+      const links = [
+        "https://www.instagram.com/p/as",
+        "https://www.instagram.com/p/as",
+       
+        ]
+      expect(brokenLinks(links))
   })
 } );
 

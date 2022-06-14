@@ -31,7 +31,6 @@ return new Promise( (resolve, reject) => {
       reject(`${chalk.cyan('\nNo hay ningun archibo .md\n')}`)
     }
   }else{
-   // reject(`\n as \n `);
    reject(
     `${chalk.red('\nLa ruta no es valida\n')}`
    );

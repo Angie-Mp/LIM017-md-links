@@ -9,7 +9,7 @@ const absoluteRoute = (ruta) => path.isAbsolute(ruta) ? ruta : path.resolve(ruta
 // Si la ruta existe es TRUE y si no FALSE (rutaExiste)
 const existingRoute = (ruta) => fs.existsSync(ruta);
 
-// Si es un directorio TRUE y si FALSE (esDirectorio)
+// Si es un directorio TRUE y si no FALSE (esDirectorio)
 const directoryRoute = (ruta) => fs.lstatSync(ruta).isDirectory();
 
 // Si es un archivo MD (esArchivoMd)
@@ -107,7 +107,6 @@ module.exports = {
   findMdFiles,
   readLinksMd,
   validateWithAxios,
-
   uniqueLinks,
   brokenLinks,
   totalLinks
