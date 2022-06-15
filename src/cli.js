@@ -6,8 +6,8 @@ const {
   brokenLinks,
   totalLinks
 } = require('./mdLinks.js')
-const argument = process.argv.slice(2) 
 
+const argument = process.argv.slice(2) 
     if (argument.length === 1) { 
       mdlinks(argument[0], { validate: false })
       .then(resolve => {
